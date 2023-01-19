@@ -1,8 +1,9 @@
-import { onFailure, onCreatePetSuccess, onIndexPetSuccess, onShowPetSuccess } from './ui.js'
-import { createPet, indexPet, showPet } from './api.js'
+import { onFailure, onCreatePetSuccess, onIndexPetSuccess, onShowPetSuccess, onUpdatePetSuccess } from './ui.js'
+import { createPet, indexPet, showPet, updatePet } from './api.js'
 
 const createPetForm = document.getElementById('create-pet-form')
 const indexPetContainer = document.getElementById('index-pet-container')
+const showPetContainer = document.getElementById('show-pet-container')
 
 indexPet()
     .then(res => res.json())
@@ -35,3 +36,23 @@ indexPetContainer.addEventListener('click', (event) => {
         .then(res => onShowPetSuccess(res.pet))
         .catch(onFailure)
 })
+
+showPetContainer.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const id = event.target.getAttribute('data-id')
+
+    const petData = {
+        pet: {
+            name: event.target['name'].value,
+            species: event.target['species'].value,
+            breed: event.target['breed'].value
+        }
+    }
+
+    if (!id) return
+
+    updatePet(petData, id)
+        .then(onUpdatePetSuccess)
+        .catch(onFailure)
+    })      

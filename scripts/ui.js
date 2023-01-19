@@ -31,7 +31,20 @@ export const onShowPetSuccess = (pet) => {
         <p>${pet.species}</p>
         <p>${pet.breed}</p>
         <p>${pet._id}</p>
+
+        <form data-id="${pet._id}">
+            <input type="text" name="name" value="${pet.name}" />
+            <input type="text" name="species" value="${pet.species}" />
+            <input type="text" name="breed" value="${pet.breed}" />
+            <input type="submit" value="Update Pet" />
+        </form>
+
+        <button data-id="${pet._id}">Delete Pet</button>
     `
 
     showPetContainer.appendChild(div)
+}
+
+export const onUpdatePetSuccess = () => {
+    messageContainer.innerText = 'Update was successful!'
 }
