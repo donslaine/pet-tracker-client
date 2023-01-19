@@ -27,3 +27,9 @@ export const updatePet = (data, id) => {
         body: JSON.stringify(data)
     })
 }
+
+export const deletePet = (id) => {
+    return fetch(`http://localhost:8000/pets/${id}`, {
+        method: 'DELETE'
+    })
+}

@@ -48,3 +48,7 @@ export const onShowPetSuccess = (pet) => {
 export const onUpdatePetSuccess = () => {
     messageContainer.innerText = 'Update was successful!'
 }
+
+export const onDeletePetSuccess = () => {
+    messageContainer.innerText = 'Delete was successful!'
+}
